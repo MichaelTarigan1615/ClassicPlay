@@ -7,7 +7,7 @@ let y = canvas.height - 30;
 let dx = 2;
 let dy = -2;
 
-let paddleHeight = 10; 
+let paddleHeight = 10; // Ketinggian paddle lebih jelas untuk persegi panjang
 let paddleWidth = 200;
 let paddleX = (canvas.width - paddleWidth) / 2;
 let rightPressed = false;
@@ -26,7 +26,7 @@ let bricks = [];
 for (let c = 0; c < brickColumnCount; c++) {
     bricks[c] = [];
     for (let r = 0; r < brickRowCount; r++) {
-        bricks[c][r] = { x: 0, y: 0, status: 1 }; 
+        bricks[c][r] = { x: 0, y: 0, status: 1 }; // status 1 artinya balok masih ada
     }
 }
 
@@ -40,9 +40,10 @@ function drawBall() {
     ctx.closePath();
 }
 
+// Mengubah drawPaddle menjadi persegi panjang berwarna
 function drawPaddle() {
     ctx.beginPath();
-    ctx.fillStyle = "black"; 
+    ctx.fillStyle = "black"; // Ganti dengan warna yang diinginkan
     ctx.fillRect(paddleX, canvas.height - paddleHeight - 10, paddleWidth, paddleHeight);
     ctx.closePath();
 }
@@ -87,7 +88,6 @@ function collisionDetection() {
 function drawScore() {
     ctx.font = "16px Arial";
     ctx.fillStyle = "#ff3b0f";
-
     ctx.fillText("Score: " + score, 8, 20);
 }
 
@@ -106,9 +106,14 @@ function draw() {
         dy = -dy;
     } else if (y + dy > canvas.height - ballRadius) {
         if (x > paddleX && x < paddleX + paddleWidth) {
+            // Hitung posisi relatif bola pada paddle
             let relativeHitPosition = (x - paddleX) / paddleWidth;
+
+            // Hitung sudut pantulan, di mana -45° sampai 45° (dalam radian)
             let reflectionAngle = (relativeHitPosition - 0.25) * Math.PI / 5;
-            dx = 3 * Math.sin(reflectionAngle); 
+
+            // Atur kecepatan bola sesuai dengan sudut pantul
+            dx = 3 * Math.sin(reflectionAngle); // 6 adalah kecepatan bola
             dy = -3 * Math.cos(reflectionAngle);
         } else {
             alert("GAME OVER");
