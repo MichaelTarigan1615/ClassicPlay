@@ -1,0 +1,30 @@
+nav {
+  position: absolute;
+}
+
+.h-100 {
+    border: 0;
+}
+
+.btn {
+  background-color: blue;
+  color: white;
+  border: 0;
+  width: 35%;
+}
+
+.card {
+  background-color: #edf5f7;
+}
+
+.form-label {
+  color: grey;
+}
+
+.h-100 {
+  background-position: inherit;
+}
+
+p {
+    text-align: center;
+}
