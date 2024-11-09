@@ -11,12 +11,12 @@
   <body>
 
     <div class="jumbotron text-center">
-      <h1>Selamat datang di CLASSIC PLAY!</h1>
-      <h2>Pilih medan pertempuranmu</h2>
+      <h1 id="welcome"> </h1>
+      <!-- <h2>Pilih medan pertempuranmu</h2> -->
     </div>
 
     <section id="games" class="container text-center">
-      <h2>Medan Pertempuran</h2>
+      <h2>Classic Play | Update ver 1.2</h2>
       <div class="available-games">
         <div class="card">
           <img src="../asset/maxresdefault.jpg" alt="Arkanoid Game" />
@@ -25,7 +25,7 @@
             <p class="card-text">Tunjukkan seberapa hebat skillmu!</p>
           </div>
           <div class="card-footer">
-            <a href="../arkanoid/arkanoid.html" class="btn btn-primary">MASUK</a>
+            <a href="../arkanoid/arkanoid.html" class="enter">Enter</a>
           </div>
         </div>
 
@@ -36,7 +36,7 @@
             <p class="card-text">GESAT GESIT<br />Mana fasthand-nya?</p>
           </div>
           <div class="card-footer">
-            <a href="../tetris/tetris.html" class="btn btn-primary">MASUK</a>
+            <a href="../tetris/tetris.html" class="enter">Enter</a>
           </div>
         </div>
 
@@ -47,7 +47,7 @@
             <p class="card-text">SHHHHHHHHH......</p>
           </div>
           <div class="card-footer">
-            <a href="../snake/snake.html" class="btn btn-primary">MASUK</a>
+            <a href="../snake/snake.html" class="enter">Enter</a>
           </div>
         </div>
       </div>
@@ -69,6 +69,12 @@
       function logout() {
         window.location.href = "index.html";
       }
+    </script>
+
+    <script>
+      const uname = localStorage.getItem("username")
+      const welcome = document.getElementById("welcome")
+      welcome.textContent = `Selamat datang, ${uname}!`
     </script>
   </body>
 </html>

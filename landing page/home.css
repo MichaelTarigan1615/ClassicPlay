@@ -25,6 +25,7 @@ html, body {
 
 .card:hover {
     transform: scale(1.05);
+    backdrop-filter: blur(15px);
 }
 
 footer {
@@ -99,7 +100,11 @@ section {
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 10px;
-    background-color: #fff;
+    background-color: rgba(255, 255, 255, 0.1); /* Transparan dengan warna putih */
+    backdrop-filter: blur(10px); /* Blur effect */
+    -webkit-backdrop-filter: blur(10px); /* Untuk kompatibilitas dengan browser berbasis WebKit */
+    transition: transform 0.3s ease, backdrop-filter 0.3s ease; /* Tambahkan transisi untuk smoothness */
+
 }
 
 .card img {
@@ -120,11 +125,11 @@ section {
 }
 
 .card button:hover, .card a:hover {
-    background-color: #0056b3;
+    background-color: rgba(255, 255, 255, 0.3);
 }
 
 .card-footer {
-    background-color: white;
+    background-color: transparent;
 }
 
 .btn-danger {
@@ -135,4 +140,8 @@ section {
     border-color: #efefef;
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
+}
+
+.card a {
+    background-color: rgba(255, 255, 255, 0.1);
 }
