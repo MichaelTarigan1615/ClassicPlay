@@ -1,0 +1,9 @@
+body{
+    background-color: #000000;
+}
+
+canvas {
+    background-image: url('../asset/arka2.png'); 
+    display: block;
+    margin: 0 auto;
+}
