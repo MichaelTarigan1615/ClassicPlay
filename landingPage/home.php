@@ -1,3 +1,17 @@
+<?php
+session_start();
+
+if(isset($_SESSION["is_login"]) == false) {
+    header("location: ../index.php");
+}
+
+if(isset($_POST['logout'])) {
+  session_unset();
+  session_destroy();
+  header("location: ../index.php");
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -26,9 +40,7 @@
             <h4 class="card-title">Arkanoid</h4>
             <p class="card-text">Tunjukkan seberapa hebat skillmu!</p>
           </div>
-          <a href="../arkanoid/arkanoid.html" class="card-footer enter"
-            >Enter
-          </a>
+          <a href="../game/arkanoid/arkanoid.html" class="card-footer enter"> Enter </a>
         </div>
 
         <div class="card">
@@ -37,7 +49,7 @@
             <h4 class="card-title">Tetris</h4>
             <p class="card-text">GESAT GESIT<br />Mana fasthand-nya?</p>
           </div>
-          <a href="../tetris/tetris.html" class="card-footer enter"> Enter </a>
+          <a href="../game/tetris/tetris.html" class="card-footer enter"> Enter </a>
         </div>
 
         <div class="card">
@@ -46,18 +58,18 @@
             <h4 class="card-title">Snake</h4>
             <p class="card-text">SHHHHHHHHH......</p>
           </div>
-          <a href="../snake/snake.html" class="card-footer enter"> Enter</a>
+          <a href="../game/snake/snake.html" class="card-footer enter"> Enter </a>
         </div>
       </div>
 
-      <div class="logout">
-        <button onclick="logout()" class="btn-danger">Logout</button>
-      </div>
+      <form method="post" action="home.php" class="logout">
+        <button type="submit" name="logout" onclick="logout()" class="btn btn-danger">Logout</button>
+      </form>
     </section>
 
-    <!-- <footer class="bg-dark text-white text-center py-4">
+    <footer class="bg-dark text-white text-center py-4">
       <h5>&copy; 2024 My Game Collection. All Rights Reserved.</h5>
-    </footer> -->
+    </footer>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>

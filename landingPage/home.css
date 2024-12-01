@@ -152,7 +152,6 @@ section {
   font-family: monospace;
   padding-inline: 8px;
   border-radius: 8px;
-  border-color: #efefef;
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
 }

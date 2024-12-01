@@ -1,124 +1,71 @@
-html, body {
+/* Reset CSS */
+* {
     margin: 0;
     padding: 0;
-}
-
-.jumbotron {
-    background: url('https://i.pinimg.com/originals/e9/f1/59/e9f1591cd39f7861c549d26ba89f487b.gif');
-    background-size: cover;
-    color: rgb(19, 15, 15);
-    padding: 40px 15px;
-}
-
-.card {
-    border-radius: 45px;
-    transition: transform 2s ease;
-    -webkit-border-radius: 45px;
-    -moz-border-radius: 45px;
-    -ms-border-radius: 45px;
-    -o-border-radius: 45px;
-    -webkit-transition: transform 2s ease;
-    -moz-transition: transform 2s ease;
-    -ms-transition: transform 2s ease;
-    -o-transition: transform 2s ease;
-}
-
-.card:hover {
-    transform: scale(1.05);
-}
-
-footer {
-    background-color: #343a40;
-}
-
-footer p {
-    margin: 0;
-}
-
-#games {
-    padding: 50px 0;
+    box-sizing: border-box;
 }
 
 body {
     font-family: 'Arial', sans-serif;
     line-height: 1.6;
-    background-image: url('https://i.pinimg.com/originals/fd/40/a4/fd40a4b8b151c4e432106576187d03c9.gif');
+    background-image: url("https://i.pinimg.com/originals/fd/40/a4/fd40a4b8b151c4e432106576187d03c9.gif");
     background-size: cover;
     background-position: center;
-    background-repeat: no-repeat;
-    color: #080808; 
+    color: #080808;
+    max-height: 100vh;
 }
 
-h1{
-    font-size: 100px;
-    color: rgb(1, 18, 18);
-    font-family: 'Times New Roman', Times, serif;
+/* Header */
+header {
+    margin-bottom: 20px;
 }
 
-h2{
-    font-size: 50px;
-    font-family: monospace;
+header h1 {
+    font-family: 'Brush Script MT', cursive; /* Gaya font unik */
+    font-size: 7rem;
+    color: #4a4a4a;
+    text-shadow: 2px 2px 5px #ffffff;
 }
 
-h4{
-    font-size: 30px;
+/* Navbar */
+.navbar {
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+.navbar .nav-link {
+    color: #333 !important;
     font-weight: bold;
 }
 
-p{
-    font-size: 25px;
-    color: rgb(4, 34, 34);
-    font-family: 'Times New Roman', Times, serif;
+.navbar .nav-link:hover {
+    color: #007bff !important;
+    text-decoration: underline;
 }
 
-section {
-    width: 100vw; 
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box; 
-}
-
-.container {
-    max-width: 100%; 
-    padding: 0;
-}
-
-
-.available-games {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 100px;
-}
-
-.card {
-    height: 100%;
-    flex: 1;
-    width: 600px;
-    text-align: center;
-    padding: 20px;
-    border: 1px solid #ccc;
+/* Perkenalan */
+.intro {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 30px;
     border-radius: 10px;
-    background-color: #fff;
+    margin: 20px auto;
 }
 
-.card img {
-    width: 100%;
-    height: auto;
-}
-
-.card button, .card a {
-    margin-top: 10px;
-    padding: 10px;
-    width: 100%;
-    background-color: #007BFF;
-    color: white;
-    border: none;
+/* Tombol Login dan Register */
+button {
+    font-size: 1.2rem;
+    padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
-    text-decoration: none;
 }
 
-.card button:hover, .card a:hover {
-    background-color: #0056b3;
+button:hover {
+    opacity: 0.8;
+}
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
 }
