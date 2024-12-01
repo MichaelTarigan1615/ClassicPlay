@@ -14,6 +14,9 @@ if (!isset($_SESSION['username'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Classic Play</title>
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   <link rel="icon" type="img" href="../asset/iconbaru.png" />
   <link rel="stylesheet" href="home.css" />
 </head>
@@ -56,6 +59,7 @@ if (!isset($_SESSION['username'])) {
       <a href="logout.php" class="btn btn-danger">Logout</a>
     </div>
   </section>
+
 </body>
 
 </html>

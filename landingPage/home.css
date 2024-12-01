@@ -4,6 +4,13 @@ body {
   padding: 0;
 }
 
+*{
+  margin: 0;
+  padding: 0;
+  font-family: 'Press Start 2P', cursive;
+  box-sizing: border-box;
+}
+
 .jumbotron {
   background: url("https://i.pinimg.com/originals/e9/f1/59/e9f1591cd39f7861c549d26ba89f487b.gif");
   background-size: cover;
@@ -29,10 +36,6 @@ body {
   backdrop-filter: blur(15px);
 }
 
-footer {
-  background-color: #343a40;
-}
-
 footer p {
   margin: 0;
 }
@@ -42,7 +45,7 @@ footer p {
 }
 
 body {
-  font-family: "Arial", sans-serif;
+  font-family: 'Press Start 2P', cursive;
   line-height: 1.6;
   background-image: url("https://i.pinimg.com/originals/fd/40/a4/fd40a4b8b151c4e432106576187d03c9.gif");
   background-size: cover;
@@ -54,7 +57,7 @@ body {
 h1 {
   font-size: 100px;
   color: rgb(1, 18, 18);
-  font-family: "Times New Roman", Times, serif;
+  font-family: 'Press Start 2P', cursive;
 }
 
 h2 {
@@ -70,7 +73,7 @@ h4 {
 p {
   font-size: 25px;
   color: rgb(4, 34, 34);
-  font-family: "Times New Roman", Times, serif;
+  font-family: 'Press Start 2P', cursive;
 }
 
 section {

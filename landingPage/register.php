@@ -51,6 +51,9 @@ if (isset($_POST['submit'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
     <link rel="icon" type="img" href="../asset/iconbaru.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="login.css">
 </head>
 
@@ -84,7 +87,7 @@ if (isset($_POST['submit'])) {
                 <input type="password" name="cpassword" id="cpassword" required>
                 <label>Konfirmasi Password</label>
             </div>
-            <button type="submit" name="submit">Gas Daftar</button>
+            <button type="submit" name="submit" >Gas Daftar</button>
             <div class="account-options">
                 <p>Udah ada akun? Gass <a href="login.php">Login</a></p>
             </div>
