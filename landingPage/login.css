@@ -31,8 +31,9 @@ body::before {
   border: 1px solid rgba(255, 255, 255, 0.5);
   border-radius: 8px;
   text-align: center;
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
+  background-color: rgba(130, 130, 130, 0.1);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
 }
 
 form {
@@ -95,6 +96,15 @@ form h2 {
 .password-options label {
   display: flex;
   align-items: center;
+}
+
+.error-message {
+  position: relative;
+  padding-left: 30px;
+  background-image: url('/asset/error-icon.png');
+  background-repeat: no-repeat;
+  background-position: 10px center;
+  font-weight: bold;
 }
 
 #remember {

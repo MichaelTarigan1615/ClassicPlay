@@ -39,17 +39,4 @@ body {
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 999;
     display: none;
-    pointer-events: none; /* Tidak menghalangi klik */
-}
-
-.game-over-menu {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    background-color: rgba(0, 0, 0, 0.8);
-    color: white;
-    padding: 20px;
-    border-radius: 10px;
 }
