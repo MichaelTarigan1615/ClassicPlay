@@ -24,13 +24,10 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php">Home</a>
+                        <a class="nav-link" href="index.php">Halaman Utama</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="landingPage/login.php">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Account</a>
+                        <a class="nav-link" href="landingPage/login.php">Daftar</a>
                     </li>
                 </ul>
             </div>
@@ -39,18 +36,18 @@
 
     <!-- Perkenalan Singkat -->
     <section class="intro text-center py-5">
-        <h2 class="mb-4">Welcome to Classic Play!</h2>
-        <p class="mx-auto w-75">Classic Play is your gateway to timeless and exciting games! Explore our collection, connect with fellow gamers, and relive the nostalgia of classic gaming. Whether you're here to relax, compete, or simply have fun, Classic Play has something for everyone. Let's dive in and start playing!</p>
+        <h2 class="mb-4">Selamat Datang di Classic Play!</h2>
+        <p class="mx-auto w-75">Classic Play adalah gerbang menuju permainan yang tak lekang oleh waktu dan seru! Jelajahi koleksi kami, jalin koneksi dengan sesama gamer, dan rasakan kembali nostalgia permainan klasik. Baik Anda di sini untuk bersantai, berkompetisi, atau sekadar bersenang-senang, Classic Play punya sesuatu untuk semua orang. Mari selami dan mulai bermain!</p>
     </section>
 
     <!-- Tombol Login dan Register -->
     <div class="text-center mb-5">
-        <a class="btn btn-primary mx-2" href="landingPage/login.php">Login</a>
-        <a class="btn btn-secondary mx-2" href="landingPage/register.php">Register</a>
+        <a class="btn btn-primary mx-2" href="landingPage/login.php">Masuk</a>
+        <a class="btn btn-secondary mx-2" href="landingPage/register.php">Daftar</a>
     </div>
 
     <!-- Bagian Footer -->
-    <footer class="text-center py-3 bottom-0">
+    <footer class="text-center pt-3 bottom-0">
         <p>&copy; 2024 Classic Play. All Rights Reserved.</p>
     </footer>
 

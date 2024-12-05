@@ -60,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
+    <title>Daftar</title>
     <link rel="stylesheet" href="login.css">
 </head>
 
@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register'])) {
             <h2>Register</h2>
             <div class="input-field">
                 <input type="text" name="username" id="username" required>
-                <label>Username</label>
+                <label>Nama</label>
             </div>
             <div class="input-field">
                 <input type="email" name="email" id="email" required>
@@ -78,18 +78,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register'])) {
             </div>
             <div class="input-field">
                 <input type="password" name="password" id="password" required>
-                <label>Password</label>
+                <label>Kata Sandi</label>
             </div>
             <div class="input-field">
                 <input type="password" name="cpassword" id="cpassword" required>
-                <label>Konfirmasi Password</label>
+                <label>Konfirmasi Kata Sandi</label>
             </div>
             
             <i style="color: red;"><?= $register_message ?></i>
 
-            <button type="submit" name="register">Register Now</button>
+            <button type="submit" name="register">Daftar Sekarang</button>
             <div class="account-options">
-                <p>Sudah punya akun? <a href="login.php">Login</a></p>
+                <p>Sudah punya akun? <a href="login.php">Masuk</a></p>
             </div>
         </form>
     </div>

@@ -29,13 +29,6 @@ body {
   backdrop-filter: blur(15px);
 }
 
-footer {
-  background-color: #343a40;
-}
-
-footer p {
-  margin: 0;
-}
 
 #games {
   padding: 50px 0;
@@ -107,7 +100,10 @@ section {
   position: relative;
   border-radius: 10px;
   overflow: hidden;
-  
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
 }
 
 .card img {

@@ -110,6 +110,9 @@ function endGame() {
     document.getElementById("gameOverMenu").style.display = "block"; // Tampilkan menu Game Over
     document.getElementById("finalScore").textContent = score; // Tampilkan skor akhir
     document.querySelector('.container').style.justifyContent = 'center'; // Ensure alignment on game over
+
+    // Send the score to the server using fetch (AJAX)
+    sendScoreToServer(score);
 }
 
 function draw() {
@@ -195,6 +198,32 @@ function togglePause() {
         pauseMenu.style.display = "none";
         draw();
     }
+}
+
+function sendScoreToServer(score) {
+    // Send the score to the server via POST request
+    fetch('../arkanoid/arkanoid.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: 'score=' + encodeURIComponent(score)
+    })    
+    .then(response => response.text())  // Gunakan response.text() untuk melihat respons mentah
+    .then(data => {
+        console.log('Server response:', data);  // Log respons untuk memeriksa isinya
+        try {
+            const jsonResponse = JSON.parse(data);  // Coba parse sebagai JSON
+            if (jsonResponse.success) {
+                console.log('Score saved:', jsonResponse.score);
+            } else {
+                console.error('Error:', jsonResponse.error);
+            }
+        } catch (error) {
+            console.error('Error parsing JSON:', error);
+        }
+    })
+    .catch(error => console.error('Error:', error));
 }
 
 document.getElementById("resumeButton").addEventListener("click", () => {

@@ -4,12 +4,6 @@ session_start();
 if(isset($_SESSION["is_login"]) == false) {
     header("location: ../index.php");
 }
-
-if(isset($_POST['logout'])) {
-  session_unset();
-  session_destroy();
-  header("location: ../index.php");
-}
 ?>
 
 <!DOCTYPE html>
@@ -26,13 +20,23 @@ if(isset($_POST['logout'])) {
     <link rel="stylesheet" href="home.css" />
   </head>
   <body>
-    <div class="jumbotron text-center">
-      <h1 id="welcome"></h1>
-      <!-- <h2>Pilih medan pertempuranmu</h2> -->
+  <nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <img src="../asset/iconbaru.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+        Classic Play
+      </a>
+      <a href="account.php">
+        <h5>Account</h5>
+      </a>
     </div>
+  </nav>
 
     <section id="games" class="container text-center">
-      <h2>Classic Play | Update ver 1.4</h2>
+      <h2>CLASSIC PLAY</h2>
+      <h3>Pilih Medan Pertempuranmu!🫵</h3>
+
+      
       <div class="available-games">
         <div class="card">
           <img src="../asset/maxresdefault.jpg" alt="Arkanoid Game" />
@@ -40,8 +44,8 @@ if(isset($_POST['logout'])) {
             <h4 class="card-title">Arkanoid</h4>
             <p class="card-text">Tunjukkan seberapa hebat skillmu!</p>
           </div>
-          <a href="../game/arkanoid/arkanoid.html" class="card-footer enter"> Enter </a>
-        </div>
+          <a href="../game/arkanoid/arkanoid.php" class="card-footer enter"> MASUK </a>
+        </div>  
 
         <div class="card">
           <img src="../asset/1_26lHxJ2Icsx4BWct9-h6Tw.jpg" alt="Tetris Game" />
@@ -49,7 +53,7 @@ if(isset($_POST['logout'])) {
             <h4 class="card-title">Tetris</h4>
             <p class="card-text">GESAT GESIT<br />Mana fasthand-nya?</p>
           </div>
-          <a href="../game/tetris/tetris.html" class="card-footer enter"> Enter </a>
+          <a href="../game/tetris/tetris.php" class="card-footer enter"> MASUK </a>
         </div>
 
         <div class="card">
@@ -58,13 +62,9 @@ if(isset($_POST['logout'])) {
             <h4 class="card-title">Snake</h4>
             <p class="card-text">SHHHHHHHHH......</p>
           </div>
-          <a href="../game/snake/snake.html" class="card-footer enter"> Enter </a>
+          <a href="../game/snake/snake.php" class="card-footer enter"> MASUK </a>
         </div>
       </div>
-
-      <form method="post" action="home.php" class="logout">
-        <button type="submit" name="logout" onclick="logout()" class="btn btn-danger">Logout</button>
-      </form>
     </section>
 
     <footer class="bg-dark text-white text-center py-4">
@@ -74,17 +74,5 @@ if(isset($_POST['logout'])) {
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-    <script>
-      function logout() {
-        window.location.href = "index.php";
-      }
-    </script>
-
-    <!-- <script>
-      const uname = localStorage.getItem("username");
-      const welcome = document.getElementById("welcome");
-      welcome.textContent = `welcome back ${uname}!`;
-    </script> -->
   </body>
 </html>

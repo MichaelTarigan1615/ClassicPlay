@@ -1,7 +1,7 @@
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 
-const box = 20;
+const box = 12;
 const canvasWidthInBoxes = canvas.width / box;
 const canvasHeightInBoxes = canvas.height / box;
 
@@ -162,6 +162,9 @@ function showGameOverMenu() {
     gameOverMenu.style.display = 'block';
     overlay.style.display = 'block';
     finalScoreDisplay.innerText = score;
+
+    // Send the score to the server
+    sendScoreToServer(score);
 }
 
 // Pause and resume functionality
@@ -179,6 +182,32 @@ function togglePause() {
         overlay.style.display = 'block';
         clearInterval(gameInterval);
     }
+}
+
+function sendScoreToServer(score) {
+    // Send the score to the server via POST request
+    fetch('../snake/snake.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: 'score=' + encodeURIComponent(score)
+    })    
+    .then(response => response.text())  // Gunakan response.text() untuk melihat respons mentah
+    .then(data => {
+        console.log('Server response:', data);  // Log respons untuk memeriksa isinya
+        try {
+            const jsonResponse = JSON.parse(data);  // Coba parse sebagai JSON
+            if (jsonResponse.success) {
+                console.log('Score saved:', jsonResponse.score);
+            } else {
+                console.error('Error:', jsonResponse.error);
+            }
+        } catch (error) {
+            console.error('Error parsing JSON:', error);
+        }
+    })
+    .catch(error => console.error('Error:', error));
 }
 
 // Event listeners for buttons

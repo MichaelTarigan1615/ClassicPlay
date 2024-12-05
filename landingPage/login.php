@@ -24,7 +24,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
             // Verifikasi password
             if (password_verify($password, $data['password'])) {
                 $_SESSION["username"] = $data["username"];
+                $_SESSION["user_id"] = $data["id"];
                 $_SESSION["is_login"] = true;
+
 
                 header("Location: home.php");
                 exit();
@@ -55,14 +57,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
 <body>
   <div class="login-wrapper">
     <form action="login.php" method="post">
-      <h2>Login</h2>
+      <h2>Masuk</h2>
       <div class="input-field">
         <input type="text" name="username" id="username" required />
-        <label>Username</label>
+        <label>Nama</label>
       </div>
       <div class="input-field">
         <input type="password" name="password" id="password" required />
-        <label>Password</label>
+        <label>Kata Sandi</label>
       </div>
       <div class="password-options">
         <label for="remember">

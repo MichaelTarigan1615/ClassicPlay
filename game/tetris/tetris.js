@@ -160,19 +160,20 @@ function showGameOver() {
   leaderboard.sort((a, b) => b - a);
   drawLeaderboard();
 
-  // Latar belakang overlay
+  // Menyimpan skor ke database
+  saveScoreToDatabase(score);
+
   context.fillStyle = 'black';
   context.globalAlpha = 0.75;
-  context.fillRect(0, canvas.height / 2 - 100, canvas.width, 200);
+  context.fillRect(0, canvas.height / 2 - 30, canvas.width, 60);
 
-  // Teks "Game Over"
   context.globalAlpha = 1;
   context.fillStyle = 'white';
   context.font = '36px monospace';
   context.textAlign = 'center';
   context.textBaseline = 'middle';
-  context.fillText('Game Over', canvas.width / 2, canvas.height / 2 - 50);
-
+  context.fillText('Game Over', canvas.width / 2, canvas.height / 2);
+  
   // Teks "Skor Akhir"
   context.font = '24px monospace';
   context.fillText(`Final Score: ${score}`, canvas.width / 2, canvas.height / 2);
@@ -202,6 +203,25 @@ function showGameOver() {
   document.body.appendChild(homeButton);
 }
 
+function saveScoreToDatabase(score) {
+  // Kirimkan skor ke server melalui POST request
+  fetch('../tetris/tetris.php', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    body: 'score=' + encodeURIComponent(score),
+  })
+  .then(response => response.json())  // Mengharapkan JSON dari server
+  .then(data => {
+    if (data.success) {
+      console.log('Score saved:', data.score);
+    } else {
+      console.error('Error saving score:', data.error);
+    }
+  })
+  .catch(error => console.error('Error:', error));
+}
 
 // Inisialisasi variabel utama
 const canvas = document.getElementById('game');
