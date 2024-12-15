@@ -1,4 +1,3 @@
-/* Reset CSS */
 * {
     margin: 0;
     padding: 0;
@@ -6,11 +5,10 @@
 }
 
 html, body {
-    height: 100%; /* Pastikan body dan html mengisi seluruh tinggi layar */
-    width: 100%; /* Pastikan body dan html mengisi seluruh lebar layar */
+    height: 100%;
+    width: 100%;
 }
 
-/* Background */
 body {
     font-family: 'Arial', sans-serif;
     line-height: 1.6;
@@ -23,19 +21,17 @@ body {
     justify-content: space-between;
 }
 
-/* Header */
 header {
     margin-bottom: 20px;
 }
 
 header h1 {
-    font-family: 'Brush Script MT', cursive; /* Gaya font unik */
+    font-family: 'Brush Script MT', cursive;
     font-size: 7rem;
     color: #4a4a4a;
     text-shadow: 2px 2px 5px #ffffff;
 }
 
-/* Navbar */
 .navbar {
     background-color: rgba(255, 255, 255, 0.9);
 }
@@ -50,7 +46,6 @@ header h1 {
     text-decoration: underline;
 }
 
-/* Perkenalan */
 .intro {
     background-color: rgba(255, 255, 255, 0.8);
     padding: 30px;
@@ -59,7 +54,6 @@ header h1 {
     max-width: 80%;
 }
 
-/* Tombol Login dan Register */
 button {
     font-size: 1.2rem;
     padding: 10px 20px;
@@ -72,7 +66,6 @@ button:hover {
     opacity: 0.8;
 }
 
-/* Footer */
 footer {
     background-color: #333;
     color: white;

@@ -45,7 +45,6 @@ if (isset($_POST['score']) && isset($_SESSION['user_id'])) {
                 <canvas id="gameCanvas" width="900px" height="1200px"></canvas>
             </div>
     
-            <!-- Menu Pause -->
             <div id="pauseMenu">
                 <h1>Game Paused</h1>
                 <button class="btn btn-primary" id="resumeButton">Resume</button>
@@ -53,7 +52,6 @@ if (isset($_POST['score']) && isset($_SESSION['user_id'])) {
                 <button class="btn btn-primary" id="backButton">Back to Home</button>
             </div>
     
-            <!-- Menu Game Over -->
             <div id="gameOverMenu">
                 <h1>Game Over</h1>
                 <p>Your Score: <span id="finalScore"></span></p>

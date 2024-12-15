@@ -17,7 +17,7 @@ body {
 
 #gameCanvas {
     width: 100%;
-    max-width: 600px; /* Tentukan lebar maksimal */
+    max-width: 600px; 
     background-image: url('../../asset/arka2.png');
     display: block;
     height: auto;
@@ -25,11 +25,11 @@ body {
 
 #leaderboard {
     width: 100%;
-    max-width: 320px; /* Tentukan lebar maksimal untuk leaderboard */
+    max-width: 320px; 
     height: auto;
     border: 1px solid black;
     background: transparent;
-    margin-top: 20px; /* Memberi jarak antara kanvas dan leaderboard */
+    margin-top: 20px;
 }
 
 #pauseMenu,
@@ -53,7 +53,7 @@ body {
     margin: 10px auto;
     padding: 10px 20px;
     font-size: 18px;
-    width: 100%; /* Agar tombol lebih responsif */
+    width: 100%; 
 }
 
 #gameOverMenu {
@@ -64,11 +64,11 @@ body {
 
 @media (max-width: 768px) {
     #gameCanvas {
-        max-width: 90%; /* Mengurangi ukuran kanvas di perangkat kecil */
+        max-width: 90%; 
     }
 
     #leaderboard {
-        max-width: 80%; /* Menyesuaikan ukuran leaderboard */
+        max-width: 80%;
     }
 
     .container {
@@ -79,7 +79,7 @@ body {
 
 @media (max-width: 480px) {
     #gameCanvas {
-        max-width: 100%; /* Menyesuaikan dengan layar kecil */
+        max-width: 100%; 
     }
 
     #leaderboard {

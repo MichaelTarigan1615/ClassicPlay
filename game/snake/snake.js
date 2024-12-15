@@ -14,13 +14,12 @@ let gameStarted = false;
 let isPaused = false;
 let gameInterval;
 
-let speed = 150; // Default speed
+let speed = 150; 
 const minSpeed = 10;
 const speedIncrease = 2.5;
 
 document.getElementById('highscoreDisplay').innerText = highscore;
 
-// Reference HTML elements
 const pauseMenu = document.getElementById('pauseMenu');
 const overlay = document.getElementById('overlay');
 const resumeButton = document.getElementById('resumeButton');
@@ -35,7 +34,6 @@ const gameOverBackButton = document.getElementById('backHomeButton');
 
 document.addEventListener('keydown', direction);
 
-// Function to initialize or reset the game
 function initGame() {
     snake = [
         { x: 9 * box, y: 10 * box },
@@ -61,11 +59,10 @@ function initGame() {
     gameInterval = setInterval(drawGame, speed);
 }
 
-// Direction control
 function direction(event) {
     if (!isPaused) {
         if (!gameStarted && (event.keyCode === 37 || event.keyCode === 38 || event.keyCode === 39 || event.keyCode === 40)) {
-            gameStarted = true; // Mark game as started on first valid direction input
+            gameStarted = true; 
         }
         if (event.keyCode === 37 && d !== "RIGHT") d = "LEFT";
         if (event.keyCode === 38 && d !== "DOWN") d = "UP";
@@ -77,24 +74,20 @@ function direction(event) {
     }
 }
 
-// Collision detection
 function collision(head, array) {
     return array.some(segment => head.x === segment.x && head.y === segment.y);
 }
 
-// Speed management
 function increaseSpeed() {
     if (speed > minSpeed) speed -= speedIncrease;
     clearInterval(gameInterval);
     gameInterval = setInterval(drawGame, speed);
 }
 
-// Update score display
 function updateScore() {
     document.getElementById('scoreDisplay').innerText = score;
 }
 
-// Check for new highscore
 function checkHighscore() {
     if (score > highscore) {
         highscore = score;
@@ -103,24 +96,19 @@ function checkHighscore() {
     }
 }
 
-// Draw the game on the canvas
 function drawGame() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    // Draw the snake
     for (let i = 0; i < snake.length; i++) {
         ctx.fillStyle = i === 0 ? 'brown' : (i % 2 === 0 ? 'black' : 'green');
         ctx.fillRect(snake[i].x, snake[i].y, box, box);
     }
 
-    // Draw the food
     ctx.fillStyle = 'red';
     ctx.fillRect(food.x, food.y, box, box);
 
-    // If game has not started yet, skip movement and drawing logic
     if (!gameStarted) return;
 
-    // Move the snake
     let snakeX = snake[0].x;
     let snakeY = snake[0].y;
 
@@ -131,7 +119,6 @@ function drawGame() {
         if (d === "DOWN") snakeY += box;
     }
 
-    // Check for food collision
     if (snakeX === food.x && snakeY === food.y) {
         score++;
         food = {
@@ -146,7 +133,6 @@ function drawGame() {
 
     let newHead = { x: snakeX, y: snakeY };
 
-    // Check for game over
     if (snakeX < 0 || snakeX >= canvas.width || snakeY < 0 || snakeY >= canvas.height || collision(newHead, snake)) {
         showGameOverMenu();
         return;
@@ -155,7 +141,6 @@ function drawGame() {
     snake.unshift(newHead);
 }
 
-// Show game over menu
 function showGameOverMenu() {
     clearInterval(gameInterval);
     checkHighscore();
@@ -163,11 +148,9 @@ function showGameOverMenu() {
     overlay.style.display = 'block';
     finalScoreDisplay.innerText = score;
 
-    // Send the score to the server
     sendScoreToServer(score);
 }
 
-// Pause and resume functionality
 function togglePause() {
     if (isPaused) {
         isPaused = false;
@@ -185,7 +168,6 @@ function togglePause() {
 }
 
 function sendScoreToServer(score) {
-    // Send the score to the server via POST request
     fetch('../snake/snake.php', {
         method: 'POST',
         headers: {
@@ -193,11 +175,11 @@ function sendScoreToServer(score) {
         },
         body: 'score=' + encodeURIComponent(score)
     })    
-    .then(response => response.text())  // Gunakan response.text() untuk melihat respons mentah
+    .then(response => response.text())  
     .then(data => {
-        console.log('Server response:', data);  // Log respons untuk memeriksa isinya
+        console.log('Server response:', data);  
         try {
-            const jsonResponse = JSON.parse(data);  // Coba parse sebagai JSON
+            const jsonResponse = JSON.parse(data);  
             if (jsonResponse.success) {
                 console.log('Score saved:', jsonResponse.score);
             } else {
@@ -210,7 +192,6 @@ function sendScoreToServer(score) {
     .catch(error => console.error('Error:', error));
 }
 
-// Event listeners for buttons
 resumeButton.addEventListener('click', togglePause);
 pauseRestartButton.addEventListener('click', initGame);
 pauseBackButton.addEventListener('click', () => (window.location.href = "../../landingPage/home.php"));
@@ -219,5 +200,4 @@ pauseButton.addEventListener('click', togglePause);
 gameOverRestartButton.addEventListener('click', initGame);
 gameOverBackButton.addEventListener('click', () => (window.location.href = "../../landingPage/home.php"));
 
-// Start the game
 initGame();

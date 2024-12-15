@@ -2,15 +2,12 @@
 session_start();
 require_once '../../landingPage/db.php';
 
-// Check if the POST data is received
 if (isset($_POST['score']) && isset($_SESSION['user_id'])) {
-    $userId = $_SESSION['user_id'];  // Get user_id from session
+    $userId = $_SESSION['user_id'];  
     $score = $_POST['score'];
 
-    // Validate data
     if ($userId && $score !== null) {
 
-        // Prepare the SQL query to insert the score
         $query = "INSERT INTO snake_score (id_user, score) VALUES ($1, $2)";
         $result = pg_query_params($dbconn, $query, array($userId, $score));
 
@@ -20,7 +17,6 @@ if (isset($_POST['score']) && isset($_SESSION['user_id'])) {
             echo json_encode(['success' => false, 'message' => 'Error saving score.']);
         }
 
-        // Close the database connection
         pg_close($dbconn);
     } else {
         echo json_encode(['success' => false, 'message' => 'Invalid data.']);
@@ -54,7 +50,6 @@ if (isset($_POST['score']) && isset($_SESSION['user_id'])) {
         </div>
     </div>
 
-    <!-- Adjusted canvas size to make it more compact -->
     <canvas id="gameCanvas" width="900" height="550"></canvas>
 
     <div class="overlay" id="overlay"></div>

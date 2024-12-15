@@ -60,7 +60,7 @@ h3 {
     margin: 10px auto;
     padding: 10px 20px;
     font-size: 18px;
-    width: 100%; /* Agar tombol lebih responsif */
+    width: 100%; 
 }
 
 #pauseButton {

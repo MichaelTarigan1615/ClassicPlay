@@ -1,11 +1,9 @@
-// Fungsi utilitas untuk menghasilkan angka acak
 function getRandomInt(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-// Menghasilkan urutan tetromino acak
 function generateSequence() {
   const sequence = ['I', 'J', 'L', 'O', 'S', 'T', 'Z'];
   while (sequence.length) {
@@ -15,7 +13,6 @@ function generateSequence() {
   }
 }
 
-// Mendapatkan tetromino berikutnya
 function getNextTetromino() {
   if (tetrominoSequence.length === 0) {
     generateSequence();
@@ -29,7 +26,6 @@ function getNextTetromino() {
   return { name, matrix, row, col };
 }
 
-// Rotasi tetromino
 function rotate(matrix) {
   const N = matrix.length - 1;
   return matrix.map((row, i) =>
@@ -37,7 +33,6 @@ function rotate(matrix) {
   );
 }
 
-// Validasi pergerakan
 function isValidMove(matrix, cellRow, cellCol) {
   for (let row = 0; row < matrix.length; row++) {
     for (let col = 0; col < matrix[row].length; col++) {
@@ -54,7 +49,6 @@ function isValidMove(matrix, cellRow, cellCol) {
   return true;
 }
 
-// Menempatkan tetromino pada playfield
 function placeTetromino() {
   let rowsCleared = 0;
 
@@ -86,7 +80,6 @@ function placeTetromino() {
   tetromino = getNextTetromino();
 }
 
-// Menampilkan pesan Game Over
 function showGameOver() {
   cancelAnimationFrame(rAF);
   gameOver = true;
@@ -106,7 +99,6 @@ function showGameOver() {
   context.fillText('Game Over', canvas.width / 2, canvas.height / 2);
 }
 
-// Memperbarui skor
 function updateScore(rowsCleared) {
   const pointsPerLine = [0, 100, 300, 500, 800];
   score += pointsPerLine[rowsCleared];
@@ -114,7 +106,6 @@ function updateScore(rowsCleared) {
   document.getElementById('score').innerText = `${score}`;
 }
 
-// Menggambar leaderboard
 function drawLeaderboard() {
   const leaderboardCanvas = document.getElementById('leaderboard');
   const leaderboardContext = leaderboardCanvas.getContext('2d');
@@ -129,30 +120,26 @@ function drawLeaderboard() {
   });
 }
 
-// Variabel tambahan untuk Pause
 let isPaused = false;
 
-// Fungsi untuk menampilkan atau menyembunyikan menu pause
 function togglePauseMenu(show) {
   const pauseMenu = document.getElementById('pauseMenu');
   pauseMenu.style.display = show ? 'flex' : 'none';
 }
 
-// Fungsi untuk pause/resume game
 function togglePause() {
   if (!gameOver) {
     isPaused = !isPaused;
     if (isPaused) {
-      cancelAnimationFrame(rAF); // Hentikan loop game
+      cancelAnimationFrame(rAF);
       togglePauseMenu(true);
     } else {
       togglePauseMenu(false);
-      rAF = requestAnimationFrame(loop); // Lanjutkan loop game
+      rAF = requestAnimationFrame(loop); 
     }
   }
 }
 
-// Menampilkan pesan Game Over dengan skor akhir, restart, dan back to home
 function showGameOver() {
   cancelAnimationFrame(rAF);
   gameOver = true;
@@ -160,7 +147,6 @@ function showGameOver() {
   leaderboard.sort((a, b) => b - a);
   drawLeaderboard();
 
-  // Menyimpan skor ke database
   saveScoreToDatabase(score);
 
   context.fillStyle = 'black';
@@ -174,11 +160,9 @@ function showGameOver() {
   context.textBaseline = 'middle';
   context.fillText('Game Over', canvas.width / 2, canvas.height / 2);
   
-  // Teks "Skor Akhir"
   context.font = '24px monospace';
   context.fillText(`Final Score: ${score}`, canvas.width / 2, canvas.height / 2);
 
-  // Tombol Restart
   const restartButton = document.createElement('button');
   restartButton.innerText = 'Restart';
   restartButton.style.position = 'absolute';
@@ -186,9 +170,8 @@ function showGameOver() {
   restartButton.style.top = `${canvas.offsetTop + canvas.height / 2 + 30}px`;
   restartButton.style.width = '100px';
   restartButton.style.height = '40px';
-  restartButton.onclick = () => window.location.reload(); // Reload halaman untuk restart
+  restartButton.onclick = () => window.location.reload(); 
 
-  // Tombol Back to Home
   const homeButton = document.createElement('button');
   homeButton.innerText = 'Home';
   homeButton.style.position = 'absolute';
@@ -196,15 +179,13 @@ function showGameOver() {
   homeButton.style.top = `${canvas.offsetTop + canvas.height / 2 + 80}px`;
   homeButton.style.width = '100px';
   homeButton.style.height = '40px';
-  homeButton.onclick = () => (window.location.href = "../../landingPage/home.php"); // Ganti URL jika perlu
+  homeButton.onclick = () => (window.location.href = "../../landingPage/home.php"); 
 
-  // Menambahkan tombol ke halaman
   document.body.appendChild(restartButton);
   document.body.appendChild(homeButton);
 }
 
 function saveScoreToDatabase(score) {
-  // Kirimkan skor ke server melalui POST request
   fetch('../tetris/tetris.php', {
     method: 'POST',
     headers: {
@@ -212,7 +193,7 @@ function saveScoreToDatabase(score) {
     },
     body: 'score=' + encodeURIComponent(score),
   })
-  .then(response => response.json())  // Mengharapkan JSON dari server
+  .then(response => response.json())  
   .then(data => {
     if (data.success) {
       console.log('Score saved:', data.score);
@@ -223,7 +204,6 @@ function saveScoreToDatabase(score) {
   .catch(error => console.error('Error:', error));
 }
 
-// Inisialisasi variabel utama
 const canvas = document.getElementById('game');
 const context = canvas.getContext('2d');
 const grid = 32;
@@ -260,17 +240,15 @@ let score = 0;
 let leaderboard = [];
 let count = 0;
 let tetromino = getNextTetromino();
-let tetrominoStopped = false; // Untuk delay
+let tetrominoStopped = false; 
 let gameOver = false;
 let rAF = null;
 
-// Fungsi utama loop game
 function loop() {
   if (!isPaused) {
     rAF = requestAnimationFrame(loop);
     context.clearRect(0, 0, canvas.width, canvas.height);
 
-    // Gambar playfield
     for (let row = 0; row < 20; row++) {
       for (let col = 0; col < 10; col++) {
         if (playfield[row][col]) {
@@ -294,7 +272,7 @@ function loop() {
             setTimeout(() => {
               placeTetromino();
               tetrominoStopped = false;
-            }, 500); // Delay 500ms sebelum tetromino ditempatkan
+            }, 500); 
           }
         }
       }
@@ -316,7 +294,6 @@ function loop() {
   }
 }
 
-// Menambahkan fitur drop langsung dengan tombol Space
 function dropTetromino() {
   while (isValidMove(tetromino.matrix, tetromino.row + 1, tetromino.col)) {
     tetromino.row++;
@@ -324,7 +301,6 @@ function dropTetromino() {
   placeTetromino();
 }
 
-// Event listener untuk input pemain
 document.addEventListener('keydown', function (e) {
   if (gameOver) return;
 
@@ -358,27 +334,25 @@ document.addEventListener('keydown', function (e) {
     tetromino.row = row;
   }
 
-  if (e.which === 32) { // Tombol Space
+  if (e.which === 32) { 
     dropTetromino();
   }
 
-  if (e.which === 80 || e.which === 27) { // Tombol P atau Esc untuk Pause
+  if (e.which === 80 || e.which === 27) {
     togglePause();
   }  
 });
 
-// Event listener untuk tombol di menu pause
 document.getElementById('resumeButton').addEventListener('click', () => {
-  togglePause(); // Lanjutkan game
+  togglePause(); 
 });
 
 document.getElementById('restartButton').addEventListener('click', () => {
-  window.location.reload(); // Muat ulang halaman untuk restart
+  window.location.reload(); 
 });
 
 document.getElementById('homeButton').addEventListener('click', () => {
-  window.location.href = "../../landingPage/home.php"; // Ganti 'index.html' dengan URL halaman utama Anda
+  window.location.href = "../../landingPage/home.php"; 
 });
 
-// Memulai loop game
 rAF = requestAnimationFrame(loop);

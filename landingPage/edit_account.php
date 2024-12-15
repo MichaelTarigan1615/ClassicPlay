@@ -1,29 +1,22 @@
 <?php
 session_start();
-require_once 'db.php'; // Memuat koneksi PostgreSQL
-
-// Periksa apakah user sudah login
+require_once 'db.php';
 if (!isset($_SESSION['user_id'])) {
     die("User not logged in!");
 }
 
-// Ambil user_id dari sesi
 $user_id = $_SESSION['user_id'];
 
-// Inisialisasi variabel untuk pesan
 $message = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_account'])) {
-    // Ambil data dari form
     $username = $_POST['username'];
     $email = $_POST['email'];
-    $password = $_POST['password']; // Opsional, hanya jika diubah
+    $password = $_POST['password']; 
 
     try {
-        // Mulai transaksi
         pg_query($dbconn, 'BEGIN');
 
-        // Update username dan email
         $query = "UPDATE user_account SET username = $1, email = $2 WHERE id = $3";
         $result = pg_query_params($dbconn, $query, [$username, $email, $user_id]);
 
@@ -31,7 +24,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_account'])) {
             throw new Exception("Failed to update username and email: " . pg_last_error($dbconn));
         }
 
-        // Update password jika diisi
         if (!empty($password)) {
             $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
             $passwordQuery = "UPDATE user_account SET password = $1 WHERE id = $2";
@@ -42,17 +34,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_account'])) {
             }
         }
 
-        // Commit transaksi
         pg_query($dbconn, 'COMMIT');
         $message = "Account updated successfully!";
     } catch (Exception $e) {
-        // Rollback transaksi jika terjadi kesalahan
         pg_query($dbconn, 'ROLLBACK');
         $message = "Error updating account: " . $e->getMessage();
     }
 }
 
-// Ambil data user untuk diisi pada form
 $query = "SELECT username, email FROM user_account WHERE id = $1";
 $result = pg_query_params($dbconn, $query, [$user_id]);
 if ($result) {

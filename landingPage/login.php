@@ -14,14 +14,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
     $password = trim($_POST['password']);
 
     if (!empty($username) && !empty($password)) {
-        // Query untuk mengambil data user berdasarkan username
         $sql = "SELECT * FROM user_account WHERE username = $1";
         $result = pg_query_params($dbconn, $sql, [$username]);
 
         if ($result && pg_num_rows($result) > 0) {
             $data = pg_fetch_assoc($result);
 
-            // Verifikasi password
             if (password_verify($password, $data['password'])) {
                 $_SESSION["username"] = $data["username"];
                 $_SESSION["user_id"] = $data["id"];

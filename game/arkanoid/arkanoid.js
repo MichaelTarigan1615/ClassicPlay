@@ -26,10 +26,9 @@ let bricks = [];
 initializeBricks();
 
 let score = 0;
-let paddleHits = 0; // Menghitung jumlah pantulan pada paddle
+let paddleHits = 0; 
 let isPaused = false;
-let isGameOver = false; // Menandakan apakah permainan sudah berakhir
-
+let isGameOver = false; 
 function initializeBricks() {
     for (let c = 0; c < brickColumnCount; c++) {
         bricks[c] = [];
@@ -40,13 +39,11 @@ function initializeBricks() {
 }
 
 function addBrickRow() {
-    // Tambahkan baris brick baru di atas
     for (let c = 0; c < brickColumnCount; c++) {
         bricks[c].unshift({ x: 0, y: 0, status: 1 });
     }
     brickRowCount++;
 
-    // Jika jumlah baris brick mencapai paddle, game over
     if (brickOffsetTop + brickRowCount * (brickHeight + brickPadding) >= canvas.height - paddleHeight - 10) {
         endGame();
     }
@@ -107,11 +104,10 @@ function updateScore() {
 
 function endGame() {
     isGameOver = true;
-    document.getElementById("gameOverMenu").style.display = "block"; // Tampilkan menu Game Over
-    document.getElementById("finalScore").textContent = score; // Tampilkan skor akhir
-    document.querySelector('.container').style.justifyContent = 'center'; // Ensure alignment on game over
+    document.getElementById("gameOverMenu").style.display = "block"; 
+    document.getElementById("finalScore").textContent = score; 
+    document.querySelector('.container').style.justifyContent = 'center'; 
 
-    // Send the score to the server using fetch (AJAX)
     sendScoreToServer(score);
 }
 
@@ -124,47 +120,38 @@ function draw() {
     drawPaddle();
     collisionDetection();
 
-    // Pantulan bola dari dinding samping
     if (x + dx > canvas.width - ballRadius || x + dx < ballRadius) {
         dx = -dx;
     }
 
-    // Pantulan bola dari dinding atas
     if (y + dy < ballRadius) {
         dy = -dy;
     } else if (y + dy > canvas.height - ballRadius) {
-        // Bola menyentuh paddle
         if (x > paddleX && x < paddleX + paddleWidth) {
-            // Hitung posisi relatif bola terhadap paddle
             let relativeX = x - (paddleX + paddleWidth / 2);
-            let maxAngle = Math.PI / 3; // Maksimum sudut pantulan (60 derajat)
+            let maxAngle = Math.PI / 3; 
             let angle = (relativeX / (paddleWidth / 2)) * maxAngle;
 
-            // Perbarui kecepatan bola berdasarkan sudut
-            let speed = Math.sqrt(dx * dx + dy * dy); // Kecepatan total tetap
+            let speed = Math.sqrt(dx * dx + dy * dy); 
             dx = speed * Math.sin(angle);
             dy = -speed * Math.cos(angle);
 
             paddleHits++;
 
-            // Tambahkan baris brick baru setiap 3 pantulan
             if (paddleHits % 3 === 0) {
                 addBrickRow();
             }
         } else {
-            // Bola jatuh ke bawah (Game Over)
             endGame();
         }
     }
 
-    // Gerakan paddle
     if (rightPressed && paddleX < canvas.width - paddleWidth) {
         paddleX += paddleSpeed;
     } else if (leftPressed && paddleX > 0) {
         paddleX -= paddleSpeed;
     }
 
-    // Update posisi bola
     x += dx;
     y += dy;
 
@@ -201,7 +188,6 @@ function togglePause() {
 }
 
 function sendScoreToServer(score) {
-    // Send the score to the server via POST request
     fetch('../arkanoid/arkanoid.php', {
         method: 'POST',
         headers: {
@@ -209,11 +195,11 @@ function sendScoreToServer(score) {
         },
         body: 'score=' + encodeURIComponent(score)
     })    
-    .then(response => response.text())  // Gunakan response.text() untuk melihat respons mentah
+    .then(response => response.text())  
     .then(data => {
-        console.log('Server response:', data);  // Log respons untuk memeriksa isinya
+        console.log('Server response:', data); 
         try {
-            const jsonResponse = JSON.parse(data);  // Coba parse sebagai JSON
+            const jsonResponse = JSON.parse(data); 
             if (jsonResponse.success) {
                 console.log('Score saved:', jsonResponse.score);
             } else {
@@ -239,12 +225,10 @@ document.getElementById("backButton").addEventListener("click", () => {
     window.location.href ="../../landingPage/home.php";
 });
 
-// Restart Game Over
 document.getElementById("restartGameButton").addEventListener("click", () => {
     location.reload();
 });
 
-// Back to Home from Game Over
 document.getElementById("homeButton").addEventListener("click", () => {
     window.location.href = "../../landingPage/home.php";
 });

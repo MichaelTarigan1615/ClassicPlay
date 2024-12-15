@@ -16,19 +16,16 @@ canvas {
   border: 1px solid black;
 }
 
-/* Ubah ukuran kontainer game */
 .game-container {
   display: grid;
   grid-template-rows: auto auto 1fr;
   justify-items: center;
   text-align: center;
   gap: 10px;
-  max-width: 240px; /* Sesuaikan dengan ukuran yang lebih kecil */
+  max-width: 240px;
   margin: 0 auto;
   background-color: black;
 }
-
-/* Atur ukuran teks dan kontainer score */
 .game-container h1 {
   margin: 0;
   font-size: 20px;
@@ -51,7 +48,6 @@ canvas {
   margin: 5px 0; 
 }
 
-/* Ubah ukuran canvas agar lebih kecil */
 #game {
   width: 240px;
   height: 480px;
@@ -62,7 +58,6 @@ canvas {
   height: 480px;
 }
 
-/* Pause menu styling */
 .pause-menu {
   position: fixed;
   top: 0;
@@ -89,15 +84,14 @@ canvas {
   font-size: 14px;
 }
 
-/* Responsif untuk perangkat lebih kecil */
 @media (max-width: 600px) {
   .game-container {
-    max-width: 200px;  /* Atur lebar game lebih kecil untuk perangkat kecil */
+    max-width: 200px;
   }
 
   #game, #leaderboard {
     width: 200px;
-    height: 400px; /* Sesuaikan ukuran canvas */
+    height: 400px;
   }
 
   .score-container {

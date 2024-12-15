@@ -1,10 +1,9 @@
 <?php
 session_start();
-require_once 'db.php'; // Memuat koneksi dan konfigurasi database dari db.php
+require_once 'db.php';
 
-// Periksa apakah sesi user_id tersedia
 if (!isset($_SESSION['user_id'])) {
-    die("User not logged in!"); // Pastikan user sudah login
+    die("User not logged in!");
 }
 
 if(isset($_POST['logout'])) {
@@ -13,11 +12,9 @@ if(isset($_POST['logout'])) {
     header("location: ../index.php");
 }
 
-// Ambil user_id dari sesi
 $user_id = $_SESSION['user_id'];
 
 try {
-    // Query untuk mengambil data user berdasarkan user_id dari tabel user_account
     $query = "SELECT username, email FROM user_account WHERE id = $1";
     $result = pg_query_params($dbconn, $query, [$user_id]);
 
@@ -25,7 +22,6 @@ try {
         throw new Exception("Query failed: " . pg_last_error($dbconn));
     }
 
-    // Ambil hasil query
     $user = pg_fetch_assoc($result);
 
     if (!$user) {

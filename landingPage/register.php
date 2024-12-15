@@ -20,14 +20,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register'])) {
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
             try {
-                // Periksa apakah username sudah ada
                 $sql = "SELECT id FROM user_account WHERE username = $1";
                 $result = pg_query_params($dbconn, $sql, [$username]);
 
                 if (pg_num_rows($result) > 0) {
                     $register_message = "Username sudah digunakan.";
                 } else {
-                    // Insert data ke database
                     $sql = "INSERT INTO user_account (username, email, password) VALUES ($1, $2, $3)";
                     $result = pg_query_params($dbconn, $sql, [$username, $email, $hashed_password]);
 
